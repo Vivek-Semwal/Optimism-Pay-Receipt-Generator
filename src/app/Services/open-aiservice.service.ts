@@ -1,15 +1,21 @@
 import { Injectable } from '@angular/core';
 import axios from 'axios';
 
+import { environment } from '../../environments/environment';
+
+const apiKey = environment.openaiApiKey;
+
 @Injectable({
   providedIn: 'root'
 })
 export class OpenAIService {
-  private apiKey = 'REMOVED_API_KEY'; // Replace with your actual key
+  // private apiKey = 'REMOVED_API_KEY'; // Replace with your actual key
+
+  private apiKey = apiKey; // Use the environment variable for the API key
 
   async extractReceiptData(prompt: string): Promise<any> {
     const fullPrompt = `
-    Extract the following details from the text and if are not present, assume the values:
+    Extract the following details from the text and if are not present, assume the values and if provided the ifsc code, assume the bank name as per the ifsc code:
     - Beneficiary Name
     - Account Number
     - IFSC (if any)

@@ -3,6 +3,10 @@ import { OpenAIService } from '../../Services/open-aiservice.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
+
+
 @Component({
   selector: 'app-receipt-component',
   imports: [FormsModule,CommonModule],
@@ -55,6 +59,38 @@ export class ReceiptComponentComponent {
       this.loading = false;
     });
   }
+
+
+
+
+
+
+  downloadReceiptAsImage() {
+  const receiptElement = document.querySelector('.receipt-content') as HTMLElement;
+  html2canvas(receiptElement).then(canvas => {
+    const image = canvas.toDataURL('image/png');
+    const link = document.createElement('a');
+    link.href = image;
+    link.download = 'optimism-pay-receipt.png';
+    link.click();
+  });
+}
+
+downloadReceiptAsPDF() {
+  const receiptElement = document.querySelector('.receipt-content') as HTMLElement;
+  html2canvas(receiptElement).then(canvas => {
+    const imageData = canvas.toDataURL('image/png');
+    const pdf = new jsPDF('p', 'mm', 'a4');
+
+    const pdfWidth = pdf.internal.pageSize.getWidth();
+    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
+
+    pdf.addImage(imageData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+    pdf.save('optimism-pay-receipt.pdf');
+  });
+}
+
+
 
 
 
