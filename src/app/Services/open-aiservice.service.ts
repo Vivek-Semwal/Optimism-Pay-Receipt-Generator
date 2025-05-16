@@ -9,7 +9,6 @@ const apiKey = environment.openaiApiKey;
   providedIn: 'root'
 })
 export class OpenAIService {
-  // private apiKey = 'REMOVED_API_KEY'; // Replace with your actual key
 
   private apiKey = apiKey; // Use the environment variable for the API key
 
