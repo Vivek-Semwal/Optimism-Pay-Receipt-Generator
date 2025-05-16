@@ -1,0 +1,45 @@
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+textarea {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+button {
+  margin-top: 10px;
+  margin-right: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+}
+
+.receipt-box {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-top: 20px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.success {
+  color: green;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.line {
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+
+.footer {
+  font-size: 12px;
+  color: #666;
+  text-align: center;
+}
