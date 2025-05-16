@@ -1,15 +1,18 @@
 require('dotenv').config();
 const fs = require('fs');
-const path = './src/environments/environment.prod.ts';
+const path = require('path');
 
-const apiKey = process.env.NG_OPENAI_API_KEY;
+const envPath = process.env.NODE_ENV === 'production'
+  ? 'src/environments/environment.prod.ts'
+  : 'src/environments/environment.ts';
 
-const fileContent = `
+const content = `
 export const environment = {
-  production: true,
-  openaiApiKey: '${apiKey}'
+  production: ${process.env.NODE_ENV === 'production'},
+  openaiApiKey: '${process.env.OPENAI_API_KEY}'
 };
 `;
 
-fs.writeFileSync(path, fileContent);
-console.log('✅ OpenAI key injected into environment.prod.ts');
+fs.writeFileSync(path.resolve(__dirname, '..', envPath), content);
+console.log(`✅ Injected environment variables into ${envPath}`);
+
